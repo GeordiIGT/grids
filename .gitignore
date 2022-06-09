@@ -1,0 +1,11 @@
+
+ag-grid/node_modules/
+ag-grid-demo/node_modules/
+devExpress/node_modules/
+devExpressDemo/node_modules/
+handsontable/node_modules/
+reactdatagrid/node_modules/
+reactdatagridDemo/node_modules/
+
+*.exe
+*.zip
