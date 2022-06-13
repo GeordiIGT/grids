@@ -3,13 +3,13 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react';
-import { LicenseManager } from  'ag-grid-enterprise'
+import { LicenseManager } from 'ag-grid-enterprise'
 // import 'ag-grid-enterprise';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 const GridExample = () => {
-  
+
   LicenseManager.setLicenseKey("For_Trialing_ag-Grid_Only-Not_For_Real_Development_Or_Production_Projects-Valid_Until-9_July_2022_[v2]_MTY1NzMyMTIwMDAwMA==f869ef3f3920de11fba068b683fb56bd");
   const gridRef = useRef();
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
@@ -22,8 +22,30 @@ const GridExample = () => {
     // we're using the auto group column by default!
     { field: 'jobTitle' },
     { field: 'employmentType' },
-    { field: 'percentage', headerName: 'Percentage %', headerTooltip:"Percentage %", minWidth: 100 },
-    { field: 'mon', headerName: 'Monday <br/> 01/05/2022', headerTooltip: '01/05/2022 Mon', filter: 'agNumberColumnFilter', aggFunc: 'sum', minWidth: 150, cellRenderer: ColourCellRenderer, cellRendererParams: { color: 'red', bgcolor: "yellow" } },
+    {
+      field: 'percentage', headerName: 'Percentage %', headerTooltip: "Percentage %", minWidth: 100, editable: true,
+      valueFormatter: (params) => {
+        params.value = Math.round(parseFloat(params.value) * 100) / 100 + "%";
+        params.data.percentage = params.value;
+        return params.value;
+      }
+    },
+    {
+      field: 'mon', headerName: 'Monday <br/> 01/05/2022', headerTooltip: '01/05/2022 Mon', filter: 'agNumberColumnFilter', aggFunc: 'sum', minWidth: 150, cellRenderer: ColourCellRenderer, cellRendererParams: { color: 'red', bgcolor: "yellow" }, headerComponentParams: {
+        menuIcon: 'fa-bars',
+        template: `<div class="ag-cell-label-container" role="presentation">  
+                    <span ref="eMenu" class="ag-header-icon ag-header-cell-menu-button"></span>  
+                    <div ref="eLabel" class="ag-header-cell-label" role="presentation">
+                     <div ref="eText" class="ag-header-cell-text"  role="columnheader"></div>    
+                        <span ref="eSortOrder" class="ag-header-icon ag-sort-order" ></span>    
+                        <span ref="eSortAsc" class="ag-header-icon ag-sort-ascending-icon" ></span>    
+                        <span ref="eSortDesc" class="ag-header-icon ag-sort-descending-icon" ></span>    
+                        <span ref="eSortNone" class="ag-header-icon ag-sort-none-icon" ></span>    
+                        <span ref="eFilter" class="ag-header-icon ag-filter-icon"></span>  
+                    </div>
+                </div>`,
+      }
+    },
     { field: 'tue', headerName: 'Tuesday \n 02/05/2022', headerTooltip: '02/05/2022 Tue' },
     { field: 'wed', headerName: 'Wednessday \n 03/05/2022', headerTooltip: '03/05/2022 Wed' },
     { field: 'thu', headerName: 'Thursday \n 04/05/2022', headerTooltip: '03/05/2022 Thur' },
