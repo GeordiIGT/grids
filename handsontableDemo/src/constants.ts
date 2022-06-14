@@ -1,4 +1,4 @@
-export const data =  [
+export const data = [
   [
     false,
     "Tagcat",
@@ -22,7 +22,7 @@ export const data =  [
     "188",
     6,
     2
-  ],  [
+  ], [
     true,
     "Meeveo",
     "United States",

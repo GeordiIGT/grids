@@ -189,170 +189,170 @@ let hotSettings = {
   //     ]
   //   }
   // ],
-  data:[
+  data: [
     {
-      orgHierarchy:'Erica Rogers',
+      orgHierarchy: 'Erica Rogers',
       jobTitle: 'CEO',
       employmentType: 'Permanent',
       mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      __children:[{
-        orgHierarchy:'Malcolm Barrett',
-      jobTitle: 'Exec. Vice Presiden',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      __children:[{
-        orgHierarchy:'Esther Baker',
-      jobTitle: 'Director of Operations',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      __children:[{
-        orgHierarchy:'Brittany Hanson',
-      jobTitle: 'Fleet Coordinator',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      __children:[{
-        orgHierarchy:'Leah Flowers',
-      jobTitle: 'Parts Technician',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      },{
-        orgHierarchy:'Tammy Sutton',
-      jobTitle: 'Service Technician',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
+      tue: '2',
+      wed: '3',
+      thu: '4',
+      fri: '5',
+      sat: '6',
+      sun: '7',
+      percentage: '50%',
+      __children: [{
+        orgHierarchy: 'Malcolm Barrett',
+        jobTitle: 'Exec. Vice Presiden',
+        employmentType: 'Permanent',
+        mon: '1',
+        tue: '2',
+        wed: '3',
+        thu: '4',
+        fri: '5',
+        sat: '6',
+        sun: '7',
+        percentage: '50%',
+        __children: [{
+          orgHierarchy: 'Esther Baker',
+          jobTitle: 'Director of Operations',
+          employmentType: 'Permanent',
+          mon: '1',
+          tue: '2',
+          wed: '3',
+          thu: '4',
+          fri: '5',
+          sat: '6',
+          sun: '7',
+          percentage: '50%',
+          __children: [{
+            orgHierarchy: 'Brittany Hanson',
+            jobTitle: 'Fleet Coordinator',
+            employmentType: 'Permanent',
+            mon: '1',
+            tue: '2',
+            wed: '3',
+            thu: '4',
+            fri: '5',
+            sat: '6',
+            sun: '7',
+            percentage: '50%',
+            __children: [{
+              orgHierarchy: 'Leah Flowers',
+              jobTitle: 'Parts Technician',
+              employmentType: 'Permanent',
+              mon: '1',
+              tue: '2',
+              wed: '3',
+              thu: '4',
+              fri: '5',
+              sat: '6',
+              sun: '7',
+              percentage: '50%',
+            }, {
+              orgHierarchy: 'Tammy Sutton',
+              jobTitle: 'Service Technician',
+              employmentType: 'Permanent',
+              mon: '1',
+              tue: '2',
+              wed: '3',
+              thu: '4',
+              fri: '5',
+              sat: '6',
+              sun: '7',
+              percentage: '50%',
+            }]
+          }, {
+            orgHierarchy: 'Derek Paul',
+            jobTitle: 'Inventory Control',
+            employmentType: 'Permanent',
+            mon: '1',
+            tue: '2',
+            wed: '3',
+            thu: '4',
+            fri: '5',
+            sat: '6',
+            sun: '7',
+            percentage: '50%',
+          }]
+        }, {
+          orgHierarchy: 'Francis Strickland',
+          jobTitle: 'VP Sales',
+          employmentType: 'Permanent',
+          mon: '1',
+          tue: '2',
+          wed: '3',
+          thu: '4',
+          fri: '5',
+          sat: '6',
+          sun: '7',
+          percentage: '50%',
+          __children: [{
+            orgHierarchy: 'Morris Hanson',
+            jobTitle: 'Sales Manager',
+            employmentType: 'Permanent',
+            mon: '1',
+            tue: '2',
+            wed: '3',
+            thu: '4',
+            fri: '5',
+            sat: '6',
+            sun: '7',
+            percentage: '50%',
+          }, {
+            orgHierarchy: 'Todd Tyler',
+            jobTitle: 'Sales Executive',
+            employmentType: 'Permanent',
+            mon: '1',
+            tue: '2',
+            wed: '3',
+            thu: '4',
+            fri: '5',
+            sat: '6',
+            sun: '7',
+            percentage: '50%',
+          }, {
+            orgHierarchy: 'Bennie Wise',
+            jobTitle: 'Sales Executive',
+            employmentType: 'Permanent',
+            mon: '1',
+            tue: '2',
+            wed: '3',
+            thu: '4',
+            fri: '5',
+            sat: '6',
+            sun: '7',
+            percentage: '50%',
+          }, {
+            orgHierarchy: 'Joel Cooper',
+            jobTitle: 'Sales Executive',
+            employmentType: 'Permanent',
+            mon: '1',
+            tue: '2',
+            wed: '3',
+            thu: '4',
+            fri: '5',
+            sat: '6',
+            sun: '7',
+            percentage: '50%',
+          }]
+        }]
       }]
-      },{
-        orgHierarchy:'Derek Paul',
-      jobTitle: 'Inventory Control',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      }]
-      },{
-        orgHierarchy:'Francis Strickland',
-      jobTitle: 'VP Sales',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      __children:[{
-        orgHierarchy:'Morris Hanson',
-      jobTitle: 'Sales Manager',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      },{
-        orgHierarchy:'Todd Tyler',
-      jobTitle: 'Sales Executive',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      },{
-        orgHierarchy:'Bennie Wise',
-      jobTitle: 'Sales Executive',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      },{
-        orgHierarchy:'Joel Cooper',
-      jobTitle: 'Sales Executive',
-      employmentType: 'Permanent',
-      mon: '1',
-      tue:'2',
-      wed:'3',
-      thu:'4',
-      fri:'5',
-      sat:'6',
-      sun:'7',
-      percentage:'50%',
-      }]
-      }]
-      }]
-      
+
     }
   ],
   rowHeaders: true,
   rowHeaderWidth: 70,
   mergeCells: true,
   columnSorting: true,
-  colWidths: [200, 200, 200, 200, 100,100,100,100,100,100,100],
+  colWidths: [200, 200, 200, 200, 100, 100, 100, 100, 100, 100, 100],
   colHeaders: true,
   nestedRows: true,
   contextMenu: true,
   nestedHeaders: [
     ['Main', { label: 'Details', colspan: 4 }, { label: 'Details1', colspan: 4 }],
-    ['orgHierarchy', 'jobTitle', 'employmentType', 'mon', 'tue','wed','thu','fri','sat','sun','percentage']
+    ['orgHierarchy', 'jobTitle', 'employmentType', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'percentage']
   ],
   collapsibleColumns: [
     { row: -4, col: 1, collapsible: true },
@@ -361,13 +361,13 @@ let hotSettings = {
     { row: -2, col: 3, collapsible: true }
   ],
   columns: [
-  	{
-    data: 'orgHierarchy'
-    },{
-    data: 'jobTitle'
-    },{
-    data: 'employmentType'
-    },{
+    {
+      data: 'orgHierarchy'
+    }, {
+      data: 'jobTitle'
+    }, {
+      data: 'employmentType'
+    }, {
       type: 'numeric',
       data: 'mon',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -376,7 +376,7 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'tue',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -385,7 +385,7 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'wed',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -394,7 +394,7 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'thu',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -403,7 +403,7 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'fri',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -412,7 +412,7 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'sat',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -421,7 +421,7 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'sun',
       // renderer: function (instance, td, row, col, prop, value, cellProperties) {
@@ -430,24 +430,21 @@ let hotSettings = {
       //   	td.innerHTML = `${value}%`
       //   }
       // }
-    },{
+    }, {
       type: 'numeric',
       data: 'percentage',
-      // renderer: function (instance, td, row, col, prop, value, cellProperties) {
-      //   Handsontable.renderers.NumericRenderer.apply(this, arguments);
-      //   if(value){
-      //   	td.innerHTML = `${value}%`
-      //   }
-      // }
+      renderer: function (instance: any, td: any, row: any, col: any, prop: any, value: any) {
+        td.innerHTML = `${value}%`
+      }
     }
   ],
-  licenseKey: 'non-commercial-and-evaluation'
+licenseKey: 'non-commercial-and-evaluation'
 };
 
 
 
 const App = () => {
-  const hotTableComponent:any = useRef(null);
+  const hotTableComponent: any = useRef(null);
 
   // const renderData = (baseData:any) => {
   //   let DDData:any = [];
@@ -460,11 +457,11 @@ const App = () => {
 
   const exportBtn = () => {
     // The Handsontable instance is stored under the `hotInstance` property of the wrapper component.
-    if(hotTableComponent.current) {
+    if (hotTableComponent.current) {
       let hot = hotTableComponent.current.hotInstance;
       let exportPlugin = hot.getPlugin('exportFile');
-      
-      hot.batch(()=>{
+
+      hot.batch(() => {
         hot.getPlugin('nestedRows').collapsingUI.expandChildren(0);
         hot.getPlugin('nestedRows').collapsingUI.expandChildren(6);
         hot.getPlugin('nestedRows').collapsingUI.expandChildren(7);
@@ -474,7 +471,7 @@ const App = () => {
         hot.getPlugin('nestedRows').collapsingUI.expandChildren(23);
         hot.getPlugin('nestedRows').collapsingUI.expandChildren(25);
       })
-         
+
       exportPlugin.downloadFile('csv', {
         bom: false,
         columnDelimiter: ',',
@@ -488,51 +485,51 @@ const App = () => {
         rowHeaders: true
       });
     }
-    
+
   };
-  const random = (max:number, min:number) => {
+  const random = (max: number, min: number) => {
     max = max || 100;
     min = min || 0;
     return Math.floor(Math.random() * max) + min;
   }
-  const getData = (loopsNum:number = 1) => {
-    let result:any = [];
+  const getData = (loopsNum: number = 1) => {
+    let result: any = [];
     let newData = hotSettings.data;
-    const getChildren = (displayNumber:any,childrenArr:any) => {
-      return childrenArr.map((item:any)=>{
+    const getChildren = (displayNumber: any, childrenArr: any) => {
+      return childrenArr.map((item: any) => {
         return {
           orgHierarchy: item.orgHierarchy + displayNumber,
           jobTitle: item.jobTitle + displayNumber,
           employmentType: item.employmentType + displayNumber,
-          mon: random(100,0),
-          tue: random(100,0),
-          wed: random(100,0),
-          thu: random(100,0),
-          fri: random(100,0),
-          sat: random(100,0),
-          sun: random(100,0),
+          mon: random(100, 0),
+          tue: random(100, 0),
+          wed: random(100, 0),
+          thu: random(100, 0),
+          fri: random(100, 0),
+          sat: random(100, 0),
+          sun: random(100, 0),
           percentage: 50,
-          __children: item.__children ? getChildren(displayNumber,item.__children) : null
+          __children: item.__children ? getChildren(displayNumber, item.__children) : null
         }
       })
     }
-    for(let i = 0; i < loopsNum; i ++) {
-      newData.forEach((item)=>{
-        let childrenArr:any = [];
-        if(item.__children) {
-          childrenArr = getChildren(i,item.__children)
+    for (let i = 0; i < loopsNum; i++) {
+      newData.forEach((item) => {
+        let childrenArr: any = [];
+        if (item.__children) {
+          childrenArr = getChildren(i, item.__children)
         }
         result.push({
           orgHierarchy: item.orgHierarchy + i,
           jobTitle: item.jobTitle + i,
           employmentType: item.employmentType + i,
-          mon: random(100,0),
-          tue: random(100,0),
-          wed: random(100,0),
-          thu: random(100,0),
-          fri: random(100,0),
-          sat: random(100,0),
-          sun: random(100,0),
+          mon: random(100, 0),
+          tue: random(100, 0),
+          wed: random(100, 0),
+          thu: random(100, 0),
+          fri: random(100, 0),
+          sat: random(100, 0),
+          sun: random(100, 0),
           percentage: 50,
           __children: childrenArr
         })
@@ -540,13 +537,13 @@ const App = () => {
     }
     return result;
   }
-  
-  let a:any = getData(3000)
+
+  let a: any = getData(Math.ceil(100000 / 12));
   hotSettings.data = a;
   return (
     <div className="controls">
-       <button onClick={exportBtn}>Export</button>
-    <HotTable ref={hotTableComponent} settings={hotSettings}/>
+      <button onClick={exportBtn}>Export</button>
+      <HotTable ref={hotTableComponent} settings={hotSettings} />
     </div>
 
     // <HotTable

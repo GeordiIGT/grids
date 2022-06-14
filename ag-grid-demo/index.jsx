@@ -20,8 +20,8 @@ const GridExample = () => {
   const [rowData, setRowData] = useState(getData(numOfData));
   const [columnDefs, setColumnDefs] = useState([
     // we're using the auto group column by default!
-    { field: 'jobTitle' },
-    { field: 'employmentType' },
+    { field: 'jobTitle', minWidth:150, rowGroup: true},
+    { field: 'employmentType' ,  rowGroup: true},
     {
       field: 'percentage', headerName: 'Percentage %', headerTooltip: "Percentage %", minWidth: 100, editable: true,
       valueFormatter: (params) => {
@@ -59,6 +59,8 @@ const GridExample = () => {
       flex: 1,
       sortable: true,
       editable: true,
+      filter: true,
+      resizable: true,
       headerComponentParams: {
         menuIcon: 'fa-bars',
         template: `<div class="ag-cell-label-container" role="presentation">  
@@ -78,11 +80,14 @@ const GridExample = () => {
 
   const autoGroupColumnDef = useMemo(() => {
     return {
-      headerName: 'Organisation Hierarchy',
+      // headerName: 'Organisation Hierarchy',
+      cellClass: getIndentClass,
       minWidth: 250,
-      cellRendererParams: {
-        suppressCount: true,
-      },
+      // cellRendererParams: {
+      //   suppressCount: true,
+      // },
+      // rowGroup: true,
+      flex: 1,
     };
   }, []);
 
@@ -93,6 +98,52 @@ const GridExample = () => {
   const onBtExport = useCallback(() => {
     gridRef.current.api.exportDataAsExcel();
   }, []);
+
+  const onBtnExportDataAsExcel = useCallback(() => {
+    gridRef.current.api.exportDataAsExcel({
+      processRowGroupCallback: rowGroupCallback,
+    });
+  }, []);
+  
+  const rowGroupCallback = (params) => {
+    return params.node.key;
+  };
+
+  const excelStyles = useMemo(() => {
+    return [
+      {
+        id: 'indent-1',
+        alignment: {
+          indent: 1,
+        },
+        // note, dataType: 'string' required to ensure that numeric values aren't right-aligned
+        dataType: 'String',
+      },
+      {
+        id: 'indent-2',
+        alignment: {
+          indent: 2,
+        },
+        dataType: 'String',
+      },
+      {
+        id: 'indent-3',
+        alignment: {
+          indent: 3,
+        },
+        dataType: 'String',
+      },
+    ];
+  }, []);
+  const getIndentClass = (params) => {
+    var indent = 0;
+    var node = params.node;
+    while (node && node.parent) {
+      indent++;
+      node = node.parent;
+    }
+    return 'indent-' + indent;
+  };
 
   function processCellForClipboard(params) {
     if (params.column.colId === 'percentage')
@@ -123,7 +174,7 @@ const GridExample = () => {
   return (
     <div style={containerStyle}>
       <button
-        onClick={onBtExport}
+        onClick={onBtnExportDataAsExcel}
         style={{ marginBottom: '5px', fontWeight: 'bold' }}
       >
         Export to Excel({numOfData} records)
@@ -143,6 +194,7 @@ const GridExample = () => {
             processCellFromClipboard={processCellFromClipboard}
             groupDefaultExpanded={-1}
             getDataPath={getDataPath}
+            excelStyles={excelStyles}
           ></AgGridReact>
         </div>
       </div>

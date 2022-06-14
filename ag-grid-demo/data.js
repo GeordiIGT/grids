@@ -1,5 +1,5 @@
 function getData(numOfRows) {
-
+  const time1 = new Date().getTime();
   const sample = genANodeData();
   numOfRows = (numOfRows && numOfRows > sample.length) ? Math.ceil(numOfRows) : sample.length;
   const numOfLoops = Math.ceil(numOfRows / sample.length);
@@ -19,6 +19,8 @@ function getData(numOfRows) {
     })
   }
   console.log("number of Permanent:" + numOfPermanent + ", number of Contract:" + numOfContract);
+  const time2 = new Date().getTime();
+  console.log("Data generating cost: " + (time2 - time1) + " milliseconds");
   return rs;
 }
 
