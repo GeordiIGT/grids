@@ -4,21 +4,24 @@ function getData(numOfRows) {
   numOfRows = (numOfRows && numOfRows > sample.length) ? Math.ceil(numOfRows) : sample.length;
   const numOfLoops = Math.ceil(numOfRows / sample.length);
   let rs = [];
-  let numOfPermanent = 0;
-  let numOfContract = 0;
   let counter;
   for (let i = 0; i < numOfLoops; i++) {
     sample.forEach(item => {
-      const newHierarchy = item.orgHierarchy.map(name => name + i);
-      // const employmentType = item.employmentType;
-      const employmentType = (item.employmentType === 'Permanent') ? item.employmentType + (numOfPermanent++) : item.employmentType + (numOfContract++);
-      const monVal = random(100);//(newHierarchy.length>1)?random(100):0;
+      const newLabel = item.label.map(name => name + "_" + i);
       rs.push({
-        jobTitle: item.jobTitle + i, employmentType: employmentType, orgHierarchy: newHierarchy, 'mon': monVal, 'tue': random(100), 'wed': random(100), 'thu': random(100), 'fri': random(100), 'sat': random(100), 'sun': random(100), 'percentage': "50%"
+        label:newLabel,
+        p1: item.p1,
+        p2: item.p2,
+        p3: item.p3,
+        p4: item.p4,
+        p5: item.p5,
+        p6: item.p6,
+        rowColour: (item.rowColour)?item.rowColour:"",
+        rowColourIndex: item.rowColourIndex,
+        'percentage': random(100)+"%"
       });
     })
   }
-  console.log("number of Permanent:" + numOfPermanent + ", number of Contract:" + numOfContract);
   const time2 = new Date().getTime();
   console.log("Data generating cost: " + (time2 - time1) + " milliseconds");
   return rs;
@@ -33,108 +36,81 @@ function random(max, min) {
 function genANodeData() {
   var rowData = [
     {
-      orgHierarchy: ['Erica Rogers'],
-      jobTitle: 'CEO',
-      employmentType: 'Permanent',
+      label: ["Node"],
+      p1: "P1",
+      p2: "P2",
+      p3: "P3",
+      p4: "P4",
+      p5: "P5",
+      p6: "P6",
+      rowColour:"#ffcc66",
+      rowColourIndex:0,
     },
     {
-      orgHierarchy: ['Erica Rogers', 'Malcolm Barrett'],
-      jobTitle: 'Exec. Vice President',
-      employmentType: 'Permanent',
-    },
-
-    {
-      orgHierarchy: ['Erica Rogers', 'Malcolm Barrett', 'Esther Baker'],
-      jobTitle: 'Director of Operations',
-      employmentType: 'Permanent',
-    },
-    {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Esther Baker',
-        'Brittany Hanson',
-      ],
-      jobTitle: 'Fleet Coordinator',
-      employmentType: 'Permanent',
+      label: ["Node", 'SOH'],
+      p1: 500,
+      p2: 800,
+      p3: 800,
+      p4: "",
+      p5: "",
+      p6: "",
+      rowColour:"#ffcccc",
+      rowColourIndex:1
     },
     {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Esther Baker',
-        'Brittany Hanson',
-        'Leah Flowers',
-      ],
-      jobTitle: 'Parts Technician',
-      employmentType: 'Contract',
+      label: ["Node", 'SOH','Gross Req'],
+      p1: 200,
+      p2: 300,
+      p3: 200,
+      p4: 300,
+      p5: 200,
+      p6: 100,
+      rowColour:"#ffcccc",
+      rowColourIndex:1
     },
     {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Esther Baker',
-        'Brittany Hanson',
-        'Tammy Sutton',
-      ],
-      jobTitle: 'Service Technician',
-      employmentType: 'Contract',
+      label: ["Node", 'SOH','Stock Coverage'],
+      p1: 2,
+      p2: 3,
+      p3: 4,
+      p4: '',
+      p5: '',
+      p6: '',
+      rowColour:"#ffcccc",
+      rowColourIndex:1
     },
     {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Esther Baker',
-        'Derek Paul',
-      ],
-      jobTitle: 'Inventory Control',
-      employmentType: 'Permanent',
-    },
-
-    {
-      orgHierarchy: ['Erica Rogers', 'Malcolm Barrett', 'Francis Strickland'],
-      jobTitle: 'VP Sales',
-      employmentType: 'Permanent',
+      label: ["Node", 'Hist 2000'],
+      p1: 500,
+      p2: 700,
+      p3: 800,
+      p4: 900,
+      p5: 200,
+      p6: 300,
+      rowColour:"#ccccff",
+      rowColourIndex:2
     },
     {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Francis Strickland',
-        'Morris Hanson',
-      ],
-      jobTitle: 'Sales Manager',
-      employmentType: 'Permanent',
+      label: ["Node", 'Hist 2000','Hist 2001'],
+      p1: 700,
+      p2: 800,
+      p3: 900,
+      p4: 500,
+      p5: 678,
+      p6: 235,
+      rowColour:"#ccccff",
+      rowColourIndex:2
     },
     {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Francis Strickland',
-        'Todd Tyler',
-      ],
-      jobTitle: 'Sales Executive',
-      employmentType: 'Contract',
-    },
-    {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Francis Strickland',
-        'Bennie Wise',
-      ],
-      jobTitle: 'Sales Executive',
-      employmentType: 'Contract',
-    },
-    {
-      orgHierarchy: [
-        'Erica Rogers',
-        'Malcolm Barrett',
-        'Francis Strickland',
-        'Joel Cooper',
-      ],
-      jobTitle: 'Sales Executive',
-      employmentType: 'Permanent',
+      label: ["Node", 'Hist 2000','Hist 2002'],
+      p1: 565,
+      p2: 5457,
+      p3: 455,
+      p4: 676,
+      p5: 245,
+      p6: 467,
+      rowColour:"#ccccff",
+      rowColourIndex:2
     },
   ];
   return rowData;
