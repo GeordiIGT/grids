@@ -23,8 +23,8 @@ function getData(numOfRows) {
     })
   }
   const time2 = new Date().getTime();
-  console.log("Data generating cost: " + (time2 - time1) + " milliseconds");
-  return rs;
+  // console.log("Data generating cost: " + (time2 - time1) + " milliseconds");
+  return {"rs":rs, "genDuration": (time2 - time1)};
 }
 
 function random(max, min) {

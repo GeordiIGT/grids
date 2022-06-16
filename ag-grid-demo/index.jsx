@@ -7,13 +7,7 @@ import { LicenseManager } from 'ag-grid-enterprise'
 // import 'ag-grid-enterprise';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-
-
-
-
-
-
-
+const timer = { timeStart: 0, timeGDDuration: 0, timeEnd: 0 };
 const GridExample = () => {
 
   LicenseManager.setLicenseKey("For_Trialing_ag-Grid_Only-Not_For_Real_Development_Or_Production_Projects-Valid_Until-9_July_2022_[v2]_MTY1NzMyMTIwMDAwMA==f869ef3f3920de11fba068b683fb56bd");
@@ -28,8 +22,27 @@ const GridExample = () => {
       return { color: 'red', background: 'yellow' }
     }
   };
-  const [numOfData, setNumOfData] = useState(50);
-  const [rowData, setRowData] = useState(getData(numOfData));
+  
+  const [numOfData, setNumOfData] = useState(8);
+  const [rowData, setRowData] = useState(getData(numOfData).rs);
+  function onUpdateRecords(numOfRecords) {
+    console.log("Start: "+numOfRecords+" rows. *************************************************************************************************************");
+    // console.log("Button clicked, start generating " + numOfRecords + " rows of data.");
+    timer.timeStart = new Date().getTime();
+    setNumOfData(numOfRecords);
+    const { rs, genDuration } = getData(numOfRecords);
+    timer.timeGDDuration = genDuration;
+    console.log("Data generating completed, cost: " + timer.timeGDDuration + " ms," + "new data length is " + rs.length);
+    setRowData(rs);
+  }
+
+  function onComponentStateChanged(evt) {
+    timer.timeEnd = new Date().getTime();
+    if (timer.timeStart !== 0) {
+      console.log("Time past " + (timer.timeEnd - timer.timeStart) + " ms. ");
+      console.log("Completed:"+evt.rowData.currentValue.length+" rows, "+evt.rowData.previousValue.length+" rows previously. **************************************************************************************");
+    }
+  }
   const [columnDefs, setColumnDefs] = useState([
     // we're using the auto group column by default!
     {
@@ -120,10 +133,6 @@ const GridExample = () => {
     }
   };
 
-  const onBtExport = useCallback(() => {
-    gridRef.current.api.exportDataAsExcel();
-  }, []);
-
   const onBtnExportDataAsExcel = useCallback(() => {
     gridRef.current.api.exportDataAsExcel({
       processRowGroupCallback: rowGroupCallback,
@@ -162,12 +171,12 @@ const GridExample = () => {
         interior: {
           color: "#ffcc66", pattern: 'Solid'
         },
-      },{
+      }, {
         id: 'rowLevel1_cell',
         interior: {
           color: "#ffcccc", pattern: 'Solid'
         },
-      },{
+      }, {
         id: 'rowLevel2_cell',
         interior: {
           color: "#ccccff", pattern: 'Solid'
@@ -179,9 +188,6 @@ const GridExample = () => {
           color: "#ffcccc", pattern: 'Solid'
         }
       },
-      // The cellClassStyle: background is green and font color is light green,
-      // note that since this excel style it's defined after redFont
-      // it will override the red font color obtained through cellClass:'red'
       {
         id: "percentageHighLight",
         alignment: {
@@ -254,14 +260,14 @@ const GridExample = () => {
     return Math.round(parseFloat(params.value) * 10000) / 100 + "%";
   }
 
+
   return (
     <div style={containerStyle}>
-      <button
-        onClick={onBtnExportDataAsExcel}
-        style={{ marginBottom: '5px', fontWeight: 'bold' }}
-      >
-        Export to Excel({numOfData} records)
-      </button>
+      <button style={{ marginBottom: '5px', fontWeight: 'bold' }} onClick={onBtnExportDataAsExcel} >Export to Excel({numOfData} records)</button>
+      <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(50); }}>50 rows</button>
+      <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(200); }}>200 rows</button>
+      <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(10000); }}>10,000 rows</button>
+      <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(100000); }}>100,000 rows</button>
       <div className="example-wrapper">
         <div style={gridStyle} className="ag-theme-alpine">
           <AgGridReact
@@ -278,7 +284,8 @@ const GridExample = () => {
             processCellFromClipboard={processCellFromClipboard}
             groupDefaultExpanded={-1}
             getDataPath={getDataPath}
-            excelStyles={excelStyles}
+            excelStyles={excelStyles} 
+            onComponentStateChanged={onComponentStateChanged}
           ></AgGridReact>
         </div>
       </div>

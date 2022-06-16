@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import 'devextreme/dist/css/dx.light.css';
 import './App.css';
 import DataGrid, {Column, Pager, Paging} from 'devextreme-react/data-grid';
@@ -6,20 +6,29 @@ import DataGrid, {Column, Pager, Paging} from 'devextreme-react/data-grid';
 import employees from './data';
  
 function App() {
-    const staffs = employees(100000);
+    const [rowData, setRowData] = useState(employees(100000));
     const allowedPageSizes = [10, 20, 500, 1000, 5000, 10000, 100000];
+    const buttonOnclick = (num)=>{
+        debugger;
+    };
+    const onContentReadyHandler= (evt)=>{
+        debugger;
+        console.log("Render completed");
+    };
     return (
         <div className="App">
+            <button onClick={()=>{buttonOnclick(50)}}>50</button>
             <DataGrid
-                dataSource={staffs}
+                dataSource={rowData}
                 keyExpr="EmployeeID"
                 allowColumnResizing={true}
-                showBorders={true}>
+                showBorders={true}
+                onContentReady={onContentReadyHandler}
+                >
                 <Pager
                     showPageSizeSelector={true}
                     allowedPageSizes={allowedPageSizes}
                     showNavigationButtons={true}
-                    
                 />
                 <Column dataField="EmployeeID" caption="ID" /> 
                 <Column dataField= 'jobTitle' />
