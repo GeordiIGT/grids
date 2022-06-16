@@ -47,6 +47,8 @@ const onSave = (workbook) => {
     saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx');
   });
 };
+const timer = { timeStart: 0, timeGDDuration: 0, timeEnd: 0 };
+
 
 const EmployeeFormatter = ({ row }) => (
   <div
@@ -90,39 +92,39 @@ function App() {
     },
     {
       name: "P1",
-      title: " ",
+      title: "P1",
       //   getCellValue: (row) =>
       //     employees.find((e) => e.ID === row.Assigned_Employee_ID).Name,
     },
     {
       name: "P2",
-      title: " ",
+      title: "P2",
       //   getCellValue: (row) =>
       //     priorities.find((p) => p.ID === row.Priority).Value,
     },
     {
       name: "P3",
-      title: " ",
+      title: "P3",
       //   getCellValue: (row) => `${row.P3}%`,
     },
     {
       name: "P4",
-      title: " ",
+      title: "P4",
       //   getCellValue: (row) => row.Start_Date.split("T")[0],
     },
     {
       name: "P5",
-      title: " ",
+      title: "P5",
       //   getCellValue: (row) => row.Due_Date.split("T")[0],
     },
     {
       name: "P6",
-      title: " ",
+      title: "P6",
       //   getCellValue: (row) => row.Due_Date.split("T")[0],
     },
     {
       name: "P7",
-      title: " ",
+      title: "P7",
       //   getCellValue: (row) => row.Due_Date.split("T")[0],
     },
   ]);
@@ -130,18 +132,18 @@ function App() {
 
   const newTaks = getTasks(rowsNumber);
   const [rows, setRows] = useState(newTaks);
-  console.log('rows:', rows)
+  // console.log('rows:', rows)
   const [pageSizes] = useState([100]);
   const [defaultColumnWidths] = useState([
-    { columnName: "Subject", width: 300 },
-    { columnName: "percentage", width: 120 },
-    { columnName: "P1", width: 120 },
-    { columnName: "P2", width: 120 },
-    { columnName: "P3", width: 120 },
-    { columnName: "P4", width: 120 },
-    { columnName: "P5", width: 120 },
-    { columnName: "P6", width: 120 },
-    { columnName: "P7", width: 120 },
+    { columnName: "Subject", width: 150 },
+    { columnName: "percentage", width: 150 },
+    { columnName: "P1", width: 80 },
+    { columnName: "P2", width: 80 },
+    { columnName: "P3", width: 80 },
+    { columnName: "P4", width: 80 },
+    { columnName: "P5", width: 80 },
+    { columnName: "P6", width: 80 },
+    { columnName: "P7", width: 80 },
   ]);
   const [defaultHiddenColumnNames] = useState(["Priority", "Completion"]);
   const [tableColumnExtensions] = useState([
@@ -152,9 +154,13 @@ function App() {
     exporterRef.current.exportGrid();
   }, [exporterRef]);
   const changeRowsNumber = (num) => {
+    console.log("Start: "+num+" rows. *************************************************************************************************************");
+    timer.timeStart = new Date().getTime();
     setRowsNumber(num);
     const newTaks = getTasks(num);
     setRows(newTaks)
+    timer.timeGDDuration = (new Date().getTime()) - timer.timeStart;
+    console.log("Data generating completed\nTime cost: " + timer.timeGDDuration + " ms, new data length is " + newTaks.length);
   }
   const contentReady = (e) => {
     debugger;
