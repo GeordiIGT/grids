@@ -32,15 +32,15 @@ const GridExample = () => {
     setNumOfData(numOfRecords);
     const { rs, genDuration } = getData(numOfRecords);
     timer.timeGDDuration = genDuration;
-    console.log("Data generating completed, cost: " + timer.timeGDDuration + " ms," + "new data length is " + rs.length);
+    console.log("Data generating completed\nTime cost: " + timer.timeGDDuration + " ms, new data length is " + rs.length);
     setRowData(rs);
   }
 
   function onComponentStateChanged(evt) {
     timer.timeEnd = new Date().getTime();
     if (timer.timeStart !== 0) {
-      console.log("Time past " + (timer.timeEnd - timer.timeStart) + " ms. ");
-      console.log("Completed:"+evt.rowData.currentValue.length+" rows, "+evt.rowData.previousValue.length+" rows previously. **************************************************************************************");
+      console.log("Render completed:"+evt.rowData.currentValue.length+" rows now\n"+evt.rowData.previousValue.length+" rows previously.");
+      console.log((timer.timeEnd - timer.timeStart) + " milliseconds past.**************************************************************************************");
     }
   }
   const [columnDefs, setColumnDefs] = useState([
