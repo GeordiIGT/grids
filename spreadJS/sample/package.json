@@ -1,0 +1,39 @@
+{
+    "name": "react-sample",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "lite-server"
+    },
+    "devDependencies": {
+        "lite-server": "2.4.0"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/react": "16.8.7",
+        "@types/react-dom": "16.8.2",
+        "jszip": "3.1.3",
+        "plugin-typescript": "8.0.0",
+        "react": "16.8.4",
+        "react-dom": "16.8.4",
+        "systemjs": "0.19.40",
+        "systemjs-plugin-babel": "0.0.25",
+        "systemjs-plugin-css": "0.1.37",
+        "typescript": "3.1.2",
+        "@grapecity/spread-sheets": "latest",
+        "@grapecity/spread-sheets-react": "latest",
+        "@grapecity/spread-excelio": "latest",
+        "@grapecity/spread-sheets-charts": "latest",
+        "@grapecity/spread-sheets-print": "latest",
+        "@grapecity/spread-sheets-pdf": "latest",
+        "@grapecity/spread-sheets-barcode": "latest",
+        "@grapecity/spread-sheets-shapes": "latest",
+        "@grapecity/spread-sheets-resources-ko": "latest",
+        "@grapecity/spread-sheets-resources-ja": "latest",
+        "@grapecity/spread-sheets-resources-zh": "latest",
+        "@grapecity/spread-sheets-languagepackages": "latest",
+        "@grapecity/spread-sheets-pivot-addon": "latest"
+    }
+}
