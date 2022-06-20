@@ -1,0 +1,21 @@
+<!doctype html>
+<html style="height:100%;font-size:14px;">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="node_modules/@grapecity/spread-sheets/styles/gc.spread.sheets.excel2013white.css">
+    <!-- SystemJS -->
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="https://www.grapecity.com/spreadjs/demos/spread/source/data/businessDashboard.js" type="text/javascript"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('https://www.grapecity.com/spreadjs/demos/en/lib/react/license.js').then(function () {
+            System.import('./src/app');
+        }); 
+    </script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
