@@ -268,6 +268,7 @@ const GridExample = () => {
       <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(200); }}>200 rows</button>
       <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(10000); }}>10,000 rows</button>
       <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(100000); }}>100,000 rows</button>
+      <button style={{ marginLeft:'15px'}} onClick={() => { onUpdateRecords(1000000); }}>1M rows</button>
       <div className="example-wrapper">
         <div style={gridStyle} className="ag-theme-alpine">
           <AgGridReact
