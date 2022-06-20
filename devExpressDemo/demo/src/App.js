@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import "devextreme/dist/css/dx.light.css";
 import "./App.css";
 import DataGrid, { Column, Pager, Paging } from "devextreme-react/data-grid";
@@ -163,13 +163,22 @@ function App() {
     console.log("Data generating completed\nTime cost: " + timer.timeGDDuration + " ms, new data length is " + newTaks.length);
   }
   const contentReady = (e) => {
-    debugger;
     console.log('contentReady', e)
   }
+  useEffect(() => {
+    // Update the document title using the browser API
+
+    console.log('contentReady');
+    timer.timeEnd = new Date().getTime();
+    if (timer.timeStart !== 0) {
+      // console.log("Render completed:"+evt.rowData.currentValue.length+" rows now\n"+evt.rowData.previousValue.length+" rows previously.");
+      console.log((timer.timeEnd - timer.timeStart) + " milliseconds past.**************************************************************************************");
+    }
+  }, [rows]);
   return (
     <div className="App">
-      <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(10)}>10</button>
-      <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(100)}>100</button>
+      <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(50)}>50</button>
+      <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(200)}>200</button>
       <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(1000)}>1000</button>
       <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(10000)}>10000</button>
       <button style={{ marginLeft: '10px' }} onClick={() => changeRowsNumber(100000)}>100000</button>
