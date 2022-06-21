@@ -37,7 +37,7 @@ const EditableCell = ({ editing, dataIndex, title, inputType, record, index, chi
   );
 };
 const App = () => {
-  const data = getData(5).rs;
+  let data = getData(5).rs;
   resetCounter();
   const [rowData, setRowData] = useState(data);
 
@@ -46,15 +46,15 @@ const App = () => {
   const isEditing = (record) => record.key === editingKey;
   const edit = (record) => {
     form.setFieldsValue({
-        label: '',
-        percentage: '',
-        p1: '',
-        p2: '',
-        p3: '',
-        p4: '',
-        p5: '',
-        p6: '',
-        ...record,
+      label: '',
+      percentage: '',
+      p1: '',
+      p2: '',
+      p3: '',
+      p4: '',
+      p5: '',
+      p6: '',
+      ...record,
     });
     setEditingKey(record.key);
   };
@@ -85,14 +85,14 @@ const App = () => {
   };
 
   const columns = [
-    { key: 'label', dataIndex: 'label', title: 'Label', editable: true,},
-    { key: 'percentage', dataIndex: 'percentage', title: 'Percentage %',editable: true, headerTooltip: "Percentage %", minWidth: 150, editable: true, },
-    { key: 'p1', dataIndex: 'p1', title: 'p1',editable: true },
-    { key: 'p2', dataIndex: 'p2', title: 'p2',editable: true },
-    { key: 'p3', dataIndex: 'p3', title: 'p3',editable: true },
-    { key: 'p4', dataIndex: 'p4', title: 'p4',editable: true },
-    { key: 'p5', dataIndex: 'p5', title: 'p5',editable: true },
-    { key: 'p6', dataIndex: 'p6', title: 'p6',editable: true },
+    { key: 'label', dataIndex: 'label', title: 'Label', editable: true, },
+    { key: 'percentage', dataIndex: 'percentage', title: 'Percentage %', editable: true, headerTooltip: "Percentage %", minWidth: 150, editable: true, },
+    { key: 'p1', dataIndex: 'p1', title: 'p1', editable: true },
+    { key: 'p2', dataIndex: 'p2', title: 'p2', editable: true },
+    { key: 'p3', dataIndex: 'p3', title: 'p3', editable: true },
+    { key: 'p4', dataIndex: 'p4', title: 'p4', editable: true },
+    { key: 'p5', dataIndex: 'p5', title: 'p5', editable: true },
+    { key: 'p6', dataIndex: 'p6', title: 'p6', editable: true },
     {
       title: 'operation',
       dataIndex: 'operation',
@@ -143,13 +143,22 @@ const App = () => {
     timer.timeStart = new Date().getTime();
     resetCounter();
     const { rs, genDuration } = getData(numOfRecords);
+    data = rs;
     timer.timeGDDuration = genDuration;
     console.log("Data generating completed\nTime cost: " + timer.timeGDDuration + " ms, new data length is " + rs.length);
     setRowData(rs);
   }
-  function tableUpdatedHandler(evt) {
+  function tableUpdatedHandler(id, // the "id" prop of the Profiler tree that has just committed
+    phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+    actualDuration, // time spent rendering the committed update
+    baseDuration, // estimated time to render the entire subtree without memoization
+    startTime, // when React began rendering this update
+    commitTime, // when React committed this update
+    interactions // the Set of interactions belonging to this update
+  ) {
+    
     timer.timeEnd = new Date().getTime();
-    if (timer.timeStart !== 0) {
+    if (timer.timeStart !== 0 && actualDuration > 50) {
       // console.log("Render completed:"+evt.rowData.currentValue.length+" rows now\n"+evt.rowData.previousValue.length+" rows previously.");
       console.log((timer.timeEnd - timer.timeStart) + " milliseconds past.**************************************************************************************");
     }
@@ -163,21 +172,21 @@ const App = () => {
       <Button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(10000); }}>10,000 rows</Button>
       <Button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(100000); }}>100,000 rows</Button>
       <Form form={form} component={false}>
-      <Profiler id='tablePro' onRender={tableUpdatedHandler}>
-        <Table
-          className="components-table-demo-nested"
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          bordered
-          columns={mergedColumns}
-          rowClassName="editable-row"
-          dataSource={rowData}
-          pagination={false}
-        />
-      </Profiler>
+        <Profiler id='tablePro' onRender={tableUpdatedHandler}>
+          <Table
+            className="components-table-demo-nested"
+            components={{
+              body: {
+                cell: EditableCell,
+              },
+            }}
+            bordered
+            columns={mergedColumns}
+            rowClassName="editable-row"
+            dataSource={rowData}
+            pagination={false}
+          />
+        </Profiler>
       </Form>
     </div>
   );
