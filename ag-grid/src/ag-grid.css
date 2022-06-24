@@ -150,10 +150,10 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
 }
 .ag-root-wrapper-body.ag-layout-normal {
   -webkit-box-flex: 1;
-          flex: 1 1 auto;
-  height: 0;
+  flex: 1 1 auto;
+  /* height: 0; */
   min-height: 0;
-}
+} 
 
 .ag-root {
   position: relative;

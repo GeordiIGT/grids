@@ -36,7 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.ag-header-row .ag-header-cell-text {
-  white-space: normal !important;
-}
