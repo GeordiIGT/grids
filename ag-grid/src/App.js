@@ -9,8 +9,8 @@ const App = () => {
 
   LicenseManager.setLicenseKey("For_Trialing_ag-Grid_Only-Not_For_Real_Development_Or_Production_Projects-Valid_Until-9_July_2022_[v2]_MTY1NzMyMTIwMDAwMA==f869ef3f3920de11fba068b683fb56bd");
   const gridRef = useRef();
-  const containerStyle = useMemo(() => ({ width: '100%', height: '98%' }), []);
-  const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
+  const containerStyle = useMemo(() => ({ width: '100%', height: "98%" }), []);
+  const gridStyle = useMemo(() => ({ height: 1500, width: '100%' }), []);
   // const ColourCellRenderer = props => <span style={{ color: props.color, background: props.bgcolor }}> {props.value}</span >;
   const ColourCellRenderer = props => <span style={{ color: "red" }}> {props.value}</span >;
   const HeaderCellRenderer = props => props.value;
