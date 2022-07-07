@@ -1,26 +1,28 @@
-
 import ReactDOM from "react-dom";
-// import "pikaday/css/pikaday.css";
+import "pikaday/css/pikaday.css";
 import "./styles.css";
 import { HotTable, HotColumn } from "@handsontable/react";
 import { getData, getColumnDef, getDataInstant } from "./data";
-// import { ProgressBarRenderer } from "./renderers/ProgressBar";
-// import { StarsRenderer } from "./renderers/Stars";
-import React, { useState, useEffect, useRef } from 'react';
+import { ProgressBarRenderer } from "./renderers/ProgressBar";
+import { StarsRenderer } from "./renderers/Stars";
+
+import React, { useEffect, useRef, useState } from 'react';
 import { registerAllModules } from 'handsontable/registry';
 
-// import {
-// 	drawCheckboxInRowHeaders,
-// 	addClassesToRows,
-// 	changeCheckboxCell,
-// 	alignHeaders
-// } from "./hooksCallbacks";
+import {
+	drawCheckboxInRowHeaders,
+	addClassesToRows,
+	changeCheckboxCell,
+	alignHeaders
+} from "./hooksCallbacks";
 
-// import "handsontable/dist/handsontable.min.css";
+import "handsontable/dist/handsontable.min.css";
+import { func } from "prop-types";
 registerAllModules();
 const timer = { timeStart: 0, timeGDDuration: 0, timeEnd: 0 };
-let hotSettings:{
-	// data: any,
+
+let hotSettings: {
+	data: any,
 	rowHeaders: boolean,
 	rowHeaderWidth: number,
 	mergeCells: boolean,
@@ -34,7 +36,7 @@ let hotSettings:{
 	columns:any,
 	licenseKey: string 
 } = {
-	// data:getDataInstant(2).rs ,
+	data: [],
 	rowHeaders: true,
 	rowHeaderWidth: 70,
 	mergeCells: true,
@@ -56,22 +58,19 @@ let hotSettings:{
 	columns: getColumnDef(),
 	licenseKey: 'non-commercial-and-evaluation'
 };
+hotSettings.data = getDataInstant(1);
 const App = () => {
-	const hotTableComponent: any = useRef(null);
 	const [numOfRows, setNumOfRows] = useState(1);
-	//const [options, setOptions] = useState({hotSettings});
 	const [options, setOptions] = useState(hotSettings);
-	const [rowDatas, setRowDatas] = useState(getDataInstant(2).rs);
+	const hotTableComponent: any = useRef(null);
 	useEffect(() => {
 		async function fetchData() {
 			const { rs, fields, genDuration } = await getData(numOfRows);
 			// hotSettings.data = rs;
 			// setOptions(hotSettings);
-			// hotTableComponent.current.hotInstance.updateSettings(hotSettings);
-			// hotTableComponent.current.hotInstance.updateData(rs);
-			(window as any).hot = hotTableComponent.current;
+			// setOptions({nestedRows: false});
+			// setNumOfRows(rs.length);
 			// debugger;
-			setRowDatas(rs);
 			if (timer.timeStart !== 0) {
 				timer.timeGDDuration = genDuration;
 				console.log('Data generating completed\nTime cost: ' + timer.timeGDDuration + ' ms, new data length is ' + rs.length);
@@ -84,6 +83,7 @@ const App = () => {
 		if (hotTableComponent.current) {
 			let hot = hotTableComponent.current.hotInstance;
 			let exportPlugin = hot.getPlugin('exportFile');
+
 			hot.batch(() => {
 				hot.getPlugin('nestedRows').collapsingUI.expandChildren(0);
 				hot.getPlugin('nestedRows').collapsingUI.expandChildren(6);
@@ -94,6 +94,7 @@ const App = () => {
 				hot.getPlugin('nestedRows').collapsingUI.expandChildren(23);
 				hot.getPlugin('nestedRows').collapsingUI.expandChildren(25);
 			})
+
 			exportPlugin.downloadFile('csv', {
 				bom: false,
 				columnDelimiter: ',',
@@ -109,11 +110,12 @@ const App = () => {
 		}
 
 	};
-	function onUpdateRecords(num: number) {
-		setNumOfRows(num);
-	}
-	// console.log(options);
 
+
+	function onUpdateRecords(num: number) {
+
+	}
+	console.log(options);
 	return (
 		<div className="controls">
 			<button onClick={exportBtn}>Export</button>
@@ -123,8 +125,80 @@ const App = () => {
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(10000); }} > 10,000 Nodes</button>
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(100000); }} > 100,000 Nodes</button>
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(1000000); }} > 1M Nodes</button>
-			<HotTable id="myHT" ref={hotTableComponent} settings={options} data={rowDatas}/>
+			<HotTable ref={hotTableComponent} settings={options} />
 		</div>
+
+		// <HotTable
+		//   data={newData}
+		//   height={850}
+		//   colWidths={[140, 192, 100, 90, 90, 110, 97, 100, 126]}
+		//   colHeaders={[
+		//     "Company name",
+		//     "Name",
+		//     "Sell date",
+		//     "In stock",
+		//     "Qty",
+		//     "Progress",
+		//     "Rating",
+		//     "Order ID",
+		//     "Country"
+		//   ]}
+		//   // nestedHeaders={[
+		//   //   ['A', { label: 'B', colspan: 8 }, 'C'],
+		//   //   ['D', { label: 'E', colspan: 4 }, { label: 'F', colspan: 4 }, 'G'],
+		//   //   ['H', { label: 'I', colspan: 2 }, { label: 'J', colspan: 2 }, { label: 'K', colspan: 2 }, { label: 'L', colspan: 2 }, 'M'],
+		//   //   ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W']
+		//   // ]}
+		//   // collapsibleColumns={[
+		//   //   { row: -2, col: 1, collapsible: true },
+		//   //   { row: -3, col: 1, collapsible: true },
+		//   //   { row: -2, col: 1, collapsible: true },
+		//   //   { row: -2, col: 3, collapsible: true }
+		//   // ]}
+		//   dropdownMenu={true}
+		//   hiddenColumns={{
+		//     indicators: true
+		//   }}
+		//   contextMenu={true}
+		//   multiColumnSorting={true}
+		//   filters={true}
+		//   rowHeaders={true}
+		//   afterGetColHeader={alignHeaders}
+		//   beforeRenderer={addClassesToRows}
+		//   afterGetRowHeader={drawCheckboxInRowHeaders}
+		//   afterOnCellMouseDown={changeCheckboxCell}
+		//   manualRowMove={true}
+		//   licenseKey="non-commercial-and-evaluation"
+		//   columns={[{
+		//     type: 'numeric',
+		//     data: 'Qty',
+		//     numericFormat: {
+		//       pattern: {
+		//         output: 'percent',
+		//         mantissa: 0
+		//       }
+		//     }
+		//   } ]}
+		// >
+		//   <HotColumn data={1} />
+		//   <HotColumn data={3} />
+		//   <HotColumn data={4} type="date" allowInvalid={false} />
+		//   <HotColumn data={6} type="checkbox" className="htCenter" />
+		//   <HotColumn data={7} type="numeric" numericFormat={{pattern: {
+		//         output: 'percent',
+		//         mantissa: 0
+		//       }}} />
+		//   <HotColumn data={8} readOnly={true} className="htMiddle">
+		//     {/* @ts-ignore Element inherits some props. It's hard to type it. */}
+		//     <ProgressBarRenderer hot-renderer />
+		//   </HotColumn>
+		//   <HotColumn data={9} readOnly={true} className="htCenter">
+		//     {/* @ts-ignore Element inherits some props. It's hard to type it. */}
+		//     <StarsRenderer hot-renderer />
+		//   </HotColumn>
+		//   <HotColumn data={5} />
+		//   <HotColumn data={2} />
+		// </HotTable>
 	);
 };
 
