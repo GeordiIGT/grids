@@ -1,51 +1,27 @@
 
-import ReactDOM from "react-dom";
-// import "pikaday/css/pikaday.css";
+// import { ReactDOM } from 'react';
+import { render } from 'react-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import "./handsontable.min.css";
 import "./styles.css";
 import { HotTable, HotColumn } from "@handsontable/react";
 import { getData, getColumnDef, getDataInstant } from "./data";
-// import { ProgressBarRenderer } from "./renderers/ProgressBar";
-// import { StarsRenderer } from "./renderers/Stars";
-import React, { useState, useEffect, useRef } from 'react';
 import { registerAllModules } from 'handsontable/registry';
 
-// import {
-// 	drawCheckboxInRowHeaders,
-// 	addClassesToRows,
-// 	changeCheckboxCell,
-// 	alignHeaders
-// } from "./hooksCallbacks";
-
-// import "handsontable/dist/handsontable.min.css";
 registerAllModules();
 const timer = { timeStart: 0, timeGDDuration: 0, timeEnd: 0 };
-let hotSettings:{
-	// data: any,
-	rowHeaders: boolean,
-	rowHeaderWidth: number,
-	mergeCells: boolean,
-	columnSorting: boolean,
-	colWidths: number[],
-	colHeaders: boolean,
-	nestedRows: boolean,
-	contextMenu: boolean,
-	nestedHeaders: any,
-	collapsibleColumns: any,
-	columns:any,
-	licenseKey: string 
-} = {
-	// data:getDataInstant(2).rs ,
+let hotSettings = {
+	// data:getDataInstant(2).rs
 	rowHeaders: true,
 	rowHeaderWidth: 70,
 	mergeCells: true,
 	columnSorting: true,
-	colWidths: [200, 200, 200, 200, 100, 100, 100, 100, 100, 100, 100],
+	colWidths: [200, 200, 200, 200, 100, 100, 100],
 	colHeaders: true,
 	nestedRows: true,
 	contextMenu: true,
 	nestedHeaders: [
-		['Main', { label: 'Details', colspan: 4 }, { label: 'Details1', colspan: 4 }],
-		['orgHierarchy', 'jobTitle', 'employmentType', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'percentage']
+		['label','p1', 'p2','p3','p4','p5','p6']
 	],
 	collapsibleColumns: [
 		{ row: -4, col: 1, collapsible: true },
@@ -53,25 +29,24 @@ let hotSettings:{
 		{ row: -2, col: 1, collapsible: true },
 		{ row: -2, col: 3, collapsible: true }
 	],
-	columns: getColumnDef(),
+	// columns: getColumnDef(),   
 	licenseKey: 'non-commercial-and-evaluation'
 };
 const App = () => {
-	const hotTableComponent: any = useRef(null);
+	const hotTableComponent = useRef(null);
 	const [numOfRows, setNumOfRows] = useState(1);
-	//const [options, setOptions] = useState({hotSettings});
 	const [options, setOptions] = useState(hotSettings);
-	const [rowDatas, setRowDatas] = useState(getDataInstant(2).rs);
+	const [rowDatas, setRowDatas] = useState();
 	useEffect(() => {
 		async function fetchData() {
 			const { rs, fields, genDuration } = await getData(numOfRows);
-			// hotSettings.data = rs;
-			// setOptions(hotSettings);
-			// hotTableComponent.current.hotInstance.updateSettings(hotSettings);
-			// hotTableComponent.current.hotInstance.updateData(rs);
-			(window as any).hot = hotTableComponent.current;
+			// hotSetting
+			hotSettings.data = rs;
+			hotSettings.collumns = getColumnDef();
+			(window).hot = hotTableComponent.current.hotInstance;
+			(window).rs = rs;
+			hotTableComponent.current.hotInstance.updateSettings(hotSettings);
 			// debugger;
-			setRowDatas(rs);
 			if (timer.timeStart !== 0) {
 				timer.timeGDDuration = genDuration;
 				console.log('Data generating completed\nTime cost: ' + timer.timeGDDuration + ' ms, new data length is ' + rs.length);
@@ -109,13 +84,12 @@ const App = () => {
 		}
 
 	};
-	function onUpdateRecords(num: number) {
+	function onUpdateRecords(num) {
 		setNumOfRows(num);
 	}
-	// console.log(options);
 
 	return (
-		<div className="controls">
+		<div className="handSontabletest">
 			<button onClick={exportBtn}>Export</button>
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(-1); }} > Get Org Data</button>
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(50); }} > 50 Nodes</button>
@@ -123,10 +97,11 @@ const App = () => {
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(10000); }} > 10,000 Nodes</button>
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(100000); }} > 100,000 Nodes</button>
 			<button style={{ marginLeft: '15px' }} onClick={() => { onUpdateRecords(1000000); }} > 1M Nodes</button>
-			<HotTable id="myHT" ref={hotTableComponent} settings={options} data={rowDatas}/>
+			<HotTable id="myHT" ref={hotTableComponent} settings={options}/>
 		</div>
 	);
 };
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+// export default App;
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<App />, rootElement);
+render(<App />, document.querySelector('#root'));
