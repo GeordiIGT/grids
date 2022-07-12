@@ -1,13 +1,33 @@
-// import axios from 'axios';
-// import { throwError, throwMapError, POST, PUT, DELETE } from '@libs/api/axiosUtils';
-// import { accounting } from '@libs/utils/NumberUtils';
 import { cloneDeep } from 'lodash';
 export const SELECTED_CLASS = "selected";
 export const ODD_ROW_CLASS = "odd";
+/**
+ * function getColumnDef only return a hard coded columns array as a place holder,
+ * to generated the columns acoording to reponse will be done in function genColumnDef inside index.jsx
+ */
 export const getColumnDef = function () {
+    // ['Node', 'label', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'Percentage'],
     return [
         {
+            data: 'nodeLabel',
+            title: 'Node',
+            readOnly: true,
+            colspan:6,
+            // renderer:function(instance, td, row, col, prop, value, cellProperties){
+            //     // debugger;
+            // }
+            // numericFormat: {
+            //     pattern: {
+            //         output: 'currency',
+            //       mantissa: 2,
+            //     },
+            //   },
+            //   allowEmpty: false,
+        },
+        {
             data: 'label'
+        }, {
+            data: 'p0'
         }, {
             data: 'p1'
         }, {
@@ -44,40 +64,30 @@ export const getColumnDef = function () {
             //   	td.innerHTML = `${value}%`
             //   }
             // }
-        }, {
-            data: 'rowColour',
-            // renderer: function (instance, td, row, col, prop, value, cellProperties) {
-            //   Handsontable.renderers.NumericRenderer.apply(this, arguments);
-            //   if(value){
-            //   	td.innerHTML = `${value}%`
-            //   }
-            // }
-        }, {
-            data: 'rowColourIndex',
-            // renderer: function (instance, td, row, col, prop, value, cellProperties) {
-            //   Handsontable.renderers.NumericRenderer.apply(this, arguments);
-            //   if(value){
-            //   	td.innerHTML = `${value}%`
-            //   }
-            // }
-        }, {
-            type: 'numeric',
-            data: 'percentage',
-            renderer: function (instance, td, row, col, prop, value) {
-                td.innerHTML = `${value}%`
-            }
-        }
+        }, 
+        { data: 'p7' }, 
+        { data: 'p8' }, 
+        { data: 'p9' }, 
+        { data: 'p10' }, 
+        { data: 'p11' }, 
+        // {
+        //     type: 'numeric',
+        //     data: 'percentage',
+        //     renderer: function (instance, td, row, col, prop, value) {
+        //         td.innerHTML = `${value}%`
+        //     }
+        // }
     ];
 };
 /************************************************************************************************/
 export const getData = async function (numOfRows = 0) {
     const time1 = new Date().getTime();
-    numOfRows = numOfRows > 0 ? numOfRows : 10;
+    numOfRows = numOfRows > 0 ? numOfRows : 1;
     const response = await requeireData(numOfRows);                       
-     // const response = await getServerData();
     const { rows: sample, fields } = parseResponse(response);
     let numOfLoops = 1;
     if (numOfRows > sample.length) {
+        //change numOfLoops in order to create dummy data when there is not enough of them
         numOfRows = numOfRows && numOfRows > sample.length ? Math.ceil(numOfRows) : sample.length;
         numOfLoops = Math.ceil(numOfRows / sample.length);
     }
@@ -85,14 +95,14 @@ export const getData = async function (numOfRows = 0) {
     for (let i = 0; i < numOfLoops; i++) {
         sample.forEach((item) => {
             if (numOfLoops === 1) {
-                item.percentage = random(100) + '%';
+                item.percentage = random(100);
                 rs.push(item);
             } else {
                 // const newItem = structuredClone(item);
                 // const newItem = JSON.parse(JSON.stringify(item));
                 const newItem = cloneDeep(item);
-                newItem.percentage = random(100) + '%';
-                newItem.label = newItem.label + '_' + i;
+                newItem.percentage = random(100);
+                newItem.label = newItem.label!==""? newItem.label + '_' + i:"";
                 newItem.hierarchy = newItem.hierarchy.map((key) => key + '_' + i);
                 rs.push(newItem);
             }
@@ -177,7 +187,8 @@ function parseResponse(resp) {
         for (let i = 0; i < resp.gridValue.gridColumns.length; i++) {
             const item = resp.gridValue.gridColumns[i];
             if (i > -1) {
-                fieldsArray.push(resp.gridContext.chronology + ' ' + item.title);
+                //fieldsArray.push(resp.gridContext.chronology + ' ' + item.title);
+                 fieldsArray.push(resp.gridContext.chronology + '<br/>' + item.title);
             } else {
                 fieldsArray.push(resp.gridContext.chronology + '\n' + item.title);
             }
@@ -196,12 +207,14 @@ function parseAllBlocks(nodeResp, nodeRowDef = {}, rtArr = []) {
             const { gridRowValues, node } = block;
             const newNodeRow = cloneDeep(nodeRowDef);
             const parentKey = (counter++).toString();
-            newNodeRow.label = node.name + ' (' + node.description + ')';
+            newNodeRow.nodeLabel = node.name + ' (' + node.description + ')';
+            newNodeRow.label = "";
             newNodeRow.startDate = node.startDate;
             newNodeRow.rowColour = '#ffcc66';
             newNodeRow.rowColourIndex = 0;
             newNodeRow.hierarchy = [parentKey];
-            rtArr.push(newNodeRow);
+            newNodeRow.__children = []; 
+
             if(gridRowValues.length === gridRows.length){
                 for (let j = 0 ; j< gridRowValues.length; j++) {
                     const row = gridRowValues[j].cellValues;
@@ -211,9 +224,7 @@ function parseAllBlocks(nodeResp, nodeRowDef = {}, rtArr = []) {
                         colourDef:rowDef.rowColor,
                         isPercentage: rowDef.formattingMessage.percent,
                         decimalNumber: rowDef.formattingMessage.decimalNumber,
-                        //   label: [...newNodeRow.label, row.title],
-                        //   rowColour: '#ffcc66',
-                        //   rowColourIndex: 0,
+                        percentage:random(100) ,
                     };
                     for (let i = 0; i < row.length; i++) {
                         aRowData['p' + i] = row[i].value !== 'NaN' ? row[i].value : '';
@@ -224,11 +235,13 @@ function parseAllBlocks(nodeResp, nodeRowDef = {}, rtArr = []) {
                     }
                     const key = (counter++).toString();
                     aRowData.hierarchy = [parentKey, key];
-                    rtArr.push(aRowData);
+                    // rtArr.push(aRowData);
+                    newNodeRow.__children.push(aRowData);
                 }
             }else{
                 new Error("Unexpected unequal length of grid row values and row definition");
             }
+            rtArr.push(newNodeRow);
         }
     }
     return rtArr;

@@ -1,6 +1,9 @@
 /*
   A stylesheet customizing app (custom renderers)
 */
+div, span, a, p, h1, h2, h3, h4, h5, h6 {
+  font-family: "Titillium-regular", Arial, Helvetica, sans-serif;
+}
 .handSontabletest{
    margin-top: 40px;
 }
@@ -58,7 +61,7 @@ table.htCore tr.selected td {
   top: -45px;
   left: -65px;
   display: block;
-  transform: rotate(-35deg);
+  transform: rotate(-35deg); 
   content: "\f131";
   content: 'v';*/
 }
@@ -73,10 +76,31 @@ table.htCore tr.selected td {
   height: 0px;
   border-right: 100px solid transparent;
   border-bottom: 70px solid red;
-  border-left: 100px solid transparent;
+  border-left: 100px solid transparent; 
   transform: rotate(-70deg);
-  content: "\f12f";
+  content: "\f12f"; 
   content: '>';*/
+}
+
+.handsontable .ht_nestingParent ~ td {
+  background: #ffcc66;
+  /* color: #222; */
+}
+
+.handsontable .myRow {
+  background: #c5d8f7;
+}
+.handsontable .myErase {
+  background: #fff;
+}
+
+.myBt {
+  width: 99%;
+  height: 100%;
+  background: #27C2FF;
+  box-sizing: border-box;
+  text-align: center;
+  border-width: 0;
 }
 
 .handsontable .truncated {
@@ -86,5 +110,5 @@ table.htCore tr.selected td {
 }
 
 .handsontable .padded {
-  padding-left: 10px;
+  padding-left: 30px;
 }

@@ -1526,7 +1526,7 @@ textarea.HandsontableCopyPaste {
 }
 .handsontable th span.ht_nestingLevel_empty {
   display: inline-block;
-  width: 10px;
+  width: 30px;
   height: 1px;
   float: left;
 }
@@ -1554,12 +1554,32 @@ textarea.HandsontableCopyPaste {
   right: unset;
 }
 .handsontable th div.ht_nestingButton.ht_nestingExpand:after {
-  /* content: '+'; */
-  content: '>';
+/*content: '>';
+ font-size: 20px; */
+
+content:'';
+background-image: url("./alpine-icons/tree-open.svg");
+display: inherit;
+width: 20px;
+height: 20px;
+background-repeat: no-repeat;
+position: absolute;
+top: 0; /* */
+
 }
 .handsontable th div.ht_nestingButton.ht_nestingCollapse:after {
-  /* content: '-'; */
-  content: 'v';
+/*content: 'v';
+ font-size: 20px; */
+
+ content:'';
+background-image: url("./alpine-icons/tree-closed.svg");
+display: inherit;
+width: 20px;
+height: 20px;
+background-repeat: no-repeat;
+position: absolute;
+top: 0; /**/
+
 }
 .handsontable.innerBorderInlineStart th div.ht_nestingButton,
 .handsontable.innerBorderInlineStart ~ .handsontable th div.ht_nestingButton {
