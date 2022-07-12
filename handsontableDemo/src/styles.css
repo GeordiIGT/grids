@@ -58,7 +58,7 @@ table.htCore tr.selected td {
   top: -45px;
   left: -65px;
   display: block;
-  transform: rotate(-35deg); 
+  transform: rotate(-35deg);
   content: "\f131";
   content: 'v';*/
 }
@@ -73,9 +73,18 @@ table.htCore tr.selected td {
   height: 0px;
   border-right: 100px solid transparent;
   border-bottom: 70px solid red;
-  border-left: 100px solid transparent; 
+  border-left: 100px solid transparent;
   transform: rotate(-70deg);
-  content: "\f12f"; 
+  content: "\f12f";
   content: '>';*/
 }
 
+.handsontable .truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.handsontable .padded {
+  padding-left: 10px;
+}

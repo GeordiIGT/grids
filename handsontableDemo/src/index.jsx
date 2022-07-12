@@ -5,21 +5,26 @@ import React, { useState, useEffect, useRef } from 'react';
 import "./handsontable.min.css";
 import "./styles.css";
 import { HotTable, HotColumn } from "@handsontable/react";
-import { getData, getColumnDef, getDataInstant } from "./data";
+import { getData, getColumnDef, getDataInstantly } from "./data";
 import { registerAllModules } from 'handsontable/registry';
+import Handsontable from "handsontable";
 
 registerAllModules();
 const timer = { timeStart: 0, timeGDDuration: 0, timeEnd: 0 };
 let hotSettings = {
-	// data:getDataInstant(2).rs
+	data:getDataInstantly(2).rs,
 	rowHeaders: true,
 	rowHeaderWidth: 70,
-	mergeCells: true,
 	columnSorting: true,
 	colWidths: [200, 200, 200, 200, 100, 100, 100],
 	colHeaders: true,
 	nestedRows: true,
 	contextMenu: true,
+	wordWrap: false,
+	renderer: function(instance, td, row, col, prop, value, cellProperties) {
+		Handsontable.renderers.TextRenderer.apply(this, arguments);
+		td.innerHTML = `<div class="truncated padded">${value}</div>`
+	},
 	nestedHeaders: [
 		['label','p1', 'p2','p3','p4','p5','p6']
 	],
@@ -29,7 +34,10 @@ let hotSettings = {
 		{ row: -2, col: 1, collapsible: true },
 		{ row: -2, col: 3, collapsible: true }
 	],
-	// columns: getColumnDef(),   
+	mergeCells: [
+		{ row: 0, col: 0, rowspan: 1, colspan: 4 },
+	],
+	columns: getColumnDef(),
 	licenseKey: 'non-commercial-and-evaluation'
 };
 const App = () => {

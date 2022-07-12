@@ -103,6 +103,38 @@ export const getData = async function (numOfRows = 0) {
     return { rs: rs, fields: fields, genDuration: time2 - time1 };
 };
 
+export const getDataInstantly = function(numOfRows = 0){
+    const time1 = new Date().getTime();
+    numOfRows = numOfRows > 0 ? numOfRows : 1;
+    const response = getDummyData();                       
+    const { rows: sample, fields } = parseResponse(response);
+    let numOfLoops = 1;
+    if (numOfRows > sample.length) {
+        numOfRows = numOfRows && numOfRows > sample.length ? Math.ceil(numOfRows) : sample.length;
+        numOfLoops = Math.ceil(numOfRows / sample.length);
+    }
+    let rs = [];
+    for (let i = 0; i < numOfLoops; i++) {
+        sample.forEach((item) => {
+            if (numOfLoops === 1) {
+                item.percentage = random(100) ;
+                rs.push(item);
+            } else {
+                // const newItem = structuredClone(item);
+                // const newItem = JSON.parse(JSON.stringify(item));
+                const newItem = cloneDeep(item);
+                newItem.percentage = random(100) ;
+                newItem.label = newItem.label + '_' + i;
+                newItem.hierarchy = newItem.hierarchy.map((key) => key + '_' + i);
+                rs.push(newItem);
+            }
+        });
+    }
+    const time2 = new Date().getTime();
+    // console.log("Data generating cost: " + (time2 - time1) + " milliseconds");
+    return { rs: rs, fields: fields, genDuration: time2 - time1 };
+}
+
 function random(max, min) {
     max = max || 100;
     min = min || 0;
@@ -110,19 +142,31 @@ function random(max, min) {
 }
 
 async function requeireData(size) {
-    /* const templateId = 1653703;
+    //const url = 'http://10.86.0.155:8080/api/grid?nodeId=11565063&templateId=1643603';
+    //   const url = '/hehe/api/grid?nodeId=11565063&templateId=1643603';
+    //const url = '/hehe/api/gridList?nodeId=11565063&templateId=1653703&size=' + size;
+    const templateId = 1653703;
     const url = '/hehe/api/grid?templateId='+templateId+'&size='+size;
     const nodeIds = [11232503, 11565063];
-       
-    return axios
+    // const postData = {
+    //     templateId:templateId,
+    //     data: nodeIds,
+    // };
+    
+  /*  return axios
         //.get(url)
         .post(url, nodeIds)
         .then((response) => {
             return response.data;
         })
         .catch(throwMapError);
-*/
-    return getServerData();
+
+   */     const rt = getDummyData();
+    return new Promise((rs) => {
+        setTimeout(function () {
+            rs(rt);
+        }, 10);
+    });
 }
 
 function parseResponse(resp) {
@@ -190,7 +234,7 @@ function parseAllBlocks(nodeResp, nodeRowDef = {}, rtArr = []) {
     return rtArr;
 }
 
-function getServerData() {
+function getDummyData() {
     const rt = {
         "nodes": [
             {
@@ -753,9 +797,6 @@ function getServerData() {
             ]
         }
     };
-    return new Promise((rs) => {
-        setTimeout(function () {
-            rs(rt);
-        }, 500);
-    });
+
+    return rt;
 }
