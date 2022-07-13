@@ -8,11 +8,11 @@ export const ODD_ROW_CLASS = "odd";
 export const getColumnDef = function () {
     // ['Node', 'label', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'Percentage'],
     return [
-        {
-            data: 'nodeLabel',
-            title: 'Node',
-            readOnly: true,
-            colspan:6,
+        // {
+        //     data: 'nodeLabel',
+        //     title: 'Node',
+        //     readOnly: true,
+        //     colspan:6,
             // renderer:function(instance, td, row, col, prop, value, cellProperties){
             //     // debugger;
             // }
@@ -23,7 +23,7 @@ export const getColumnDef = function () {
             //     },
             //   },
             //   allowEmpty: false,
-        },
+        // },
         {
             data: 'label'
         }, {
@@ -187,8 +187,8 @@ function parseResponse(resp) {
         for (let i = 0; i < resp.gridValue.gridColumns.length; i++) {
             const item = resp.gridValue.gridColumns[i];
             if (i > -1) {
-                //fieldsArray.push(resp.gridContext.chronology + ' ' + item.title);
-                 fieldsArray.push(resp.gridContext.chronology + '<br/>' + item.title);
+                fieldsArray.push(resp.gridContext.chronology + ' ' + item.title);
+                 // fieldsArray.push(resp.gridContext.chronology + '<br/>' + item.title);
             } else {
                 fieldsArray.push(resp.gridContext.chronology + '\n' + item.title);
             }
@@ -207,8 +207,9 @@ function parseAllBlocks(nodeResp, nodeRowDef = {}, rtArr = []) {
             const { gridRowValues, node } = block;
             const newNodeRow = cloneDeep(nodeRowDef);
             const parentKey = (counter++).toString();
-            newNodeRow.nodeLabel = node.name + ' (' + node.description + ')';
-            newNodeRow.label = "";
+            // newNodeRow.nodeLabel = node.name + ' (' + node.description + ')';
+            // newNodeRow.label = "";
+            newNodeRow.label = node.name + ' (' + node.description + ')';
             newNodeRow.startDate = node.startDate;
             newNodeRow.rowColour = '#ffcc66';
             newNodeRow.rowColourIndex = 0;

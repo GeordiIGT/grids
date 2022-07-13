@@ -16,14 +16,14 @@ const App = () => {
 		rowHeaderWidth: 70, 
 
 		columnSorting: true, 
-		colWidths: [30, 200], 
+		colWidths: [200], 
 		colHeaders: true, 
 		nestedRows: true, 
 		contextMenu: true, 
 		manualColumnResize: true,
 		nestedHeaders: [
-			// ['Node','label',{ label: "Weeks", colspan: 12},'Percentage'],
-			['Node', 'label', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12'],
+			//['Node', 'label', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12'],
+			[ 'label', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12'],
 		],
 		collapsibleColumns: [
 			{ row: -4, col: 1, collapsible: true }, // Add the button to the 4th-level header of the 1st column - counting from the first table row upwards.
@@ -33,14 +33,23 @@ const App = () => {
 		hiddenColumns: true,
 		// mergeCells: true,
 		mergeCells: [
-			{ row: 0, col: 0, rowspan: 1, colspan:13 },
-			{ row: 5, col: 0, rowspan: 1, colspan:13 },
+			{ row: 0, col: 0, rowspan: 1, colspan:12 },
+			{ row: 5, col: 0, rowspan: 1, colspan:12 },
 		],
 		// beforeMergeCells: beforeMergeCellsHandler,
 		wordWrap: false,
 		renderer: function(instance, td, row, col, prop, value, cellProperties) {
 			Handsontable.renderers.TextRenderer.apply(this, arguments);
-			td.innerHTML = `<div class="truncated padded">${(!!value)?value:""}</div>`
+			let className = "truncated";
+			if(col === 0 && instance){
+				const rowD = instance.getSourceDataAtRow(row);
+				// const mytd = td;  //定义这两个变量是因为再浏览器调试模式下，无法再console里访问td和instance这两个传参变量，我只能域定义了他们
+				// const myhot = instance;
+				if(rowD.hierarchy && rowD.hierarchy.length > 1){
+					className = "truncated indent-"+rowD.hierarchy.length;
+				}
+			}
+			td.innerHTML = `<div class='${className}'>${(!!value)?value:""}</div>`;		
 		},
 		cells: setCellStyles,
 		// beforeOnCellMouseOver: cellOnMouseOverHandler,
@@ -63,7 +72,8 @@ const App = () => {
 
 			hotSettings.data = rs;
 			hotSettings.collumns = genColumnDef(fields);
-			fields.unshift('Node', 'Time Series');
+			// fields.unshift('Node', 'Time Series');
+			fields.unshift('Time Series');
 			fields.push('Percentage %');
 			hotSettings.nestedHeaders = [fields];
 			window.hot = hotTableComponent.current.hotInstance;

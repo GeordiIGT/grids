@@ -109,6 +109,28 @@ table.htCore tr.selected td {
   text-overflow: ellipsis;
 }
 
-.handsontable .padded {
+
+.handsontable .indent-1 {
+  padding-left: 0px;
+}
+.handsontable .indent-2 {
   padding-left: 30px;
+}
+.handsontable .indent-3 {
+  padding-left: 60px;
+}
+.handsontable .indent-4 {
+  padding-left: 90px;
+}
+.handsontable .indent-5 {
+  padding-left: 120px;
+}
+.handsontable .indent-6 {
+  padding-left: 150px;
+}
+.handsontable .indent-7 {
+  padding-left: 180px;
+}
+.handsontable .indent-8 {
+  padding-left: 210px;
 }
