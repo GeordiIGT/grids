@@ -1,0 +1,117 @@
+perfunctory         adj. 敷衍的，草率的含糊，rash
+OLAP 服务(Microsoft SQL Server Analysis Services).
+demand sensing version  noun.需求感应版本
+baseline sale 常规销量
+uplift 促销时比常规多出来的销量
+promotion sales  = baseline + uplift
+average price 常规价格
+Promotion price = 促销价格
+Base Sales Revenue 平价销售额
+Promotion Sales Revenue 促销销售额
+Cost Of Good 成本价
+Pixed Promo Expenditure 促销佣金（广告，代言人）
+Collaboration, Cooperation
+consumption 使用量，消耗量
+twist 拧把
+legitimate adj. 合法的
+malicious adj. 恶意的
+glossary词汇表：Vocabulary
+It's worth noting 值得注意的是
+Intensive phobia: 密集恐惧症
+reluct： verb 反抗
+reluctant：adj。 不情愿的，厌恶的，我一点都不想来：I am really reluctant to come.
+velocities: noun. the speed of something in a giving direction.
+Prior to 。。。 later than
+Versions of marked prior to 0.6.2 and later than 0.3.14
+vice versa 反之亦然
+procrastinate 拖延的，拖拖拉拉的
+procrastinator 拖延症患者
+by the relevant amount 根据数值v
+Extra-Terrestrial   n. 外星人；adj
+Peasant, Peasants n. 农民，乡巴佬，土鳖，乡下人，土包子
+trim    v. 修剪；削减；装饰；调整帆以适应风向
+          adj. 整洁的；匀称的
+          n. 修剪；整齐；装饰
+moral n. 道德，寓意。
+Orbit, orbiting, orbital : verb,ing,adj  轨道，按轨迹运行，轨道的
+plaque n. 牌匾，名牌
+integrity n. 廉正
+ethical adj. 合乎道义的，正道的。
+marbles n. 弹子，大理石，雕刻
+deprecated verb. 被抛弃的，放弃的
+emphasizes verb. 强调,注重
+top notch adj. 顶尖的
+grieve verb. 伤心，哀悼 （哀悼/慰问：condolences）
+illegible adj, 难以辨认的
+tactful adj. 恰当的，识相的
+courteous adj. 礼貌的 polite
+eliminate adj. 清除，消除，clear
+derived adj. 派生的
+Disguised verb 伪装
+elbows verb/noun. 排挤，用手推开/肘部
+referees Noun. 裁判员
+foul Noun. 犯规
+permute v 排列组合，n. permutation
+cumbersome adj. 麻烦的
+cumbrous adj. 麻烦的
+troublesome  adj. 麻烦的
+startle verb.  惊吓，吓到。
+hierarachy n. 层级关系，等级制度
+Sphinx              狮身人面像
+cartouche         漩涡
+sceptres           权杖
+lotus                 莲花
+Scararb             
+pestering          缠扰
+concern 
+concrete           adj,具体
+encapsulates    v. 封装
+instantiated      v. 实例化
+rasterized 
+literally             adj. 字面上。
+that would be the equivalent  那是等效的
+essential business 必要的商店
+precisely          adv 精确地
+chime in 
+suffix, prefix
+Intensive phobia
+memory serves
+bracket
+semicolon
+promptly adv. 及时timely, in time, promptly, without delay
+                       立刻at once, promptly, shortly, forthwith, straightway, anon
+deprived adjective 被剥夺
+numb verb. 麻醉
+simulate、imitate、 模拟，仿真
+acronyms / abbreviation 首字母缩写词
+tragic == miserable adj. 悲惨的
+Vulnerability Based Trust 通过漏洞信任
+insight word 洞察词
+collaboration 协作
+authenticate
+inadvertently 
+parallel
+associated 
+isolated
+A 'set' accessor cannot have a return type annotation.
+hierarachy n. 层级关系，等级制度
+Sphinx              狮身人面像
+cartouche         漩涡
+sceptres           权杖
+lotus                 莲花
+Scararb             
+pestering          缠扰
+concern 
+concrete           adj,具体
+encapsulates    v. 封装
+instantiated      v. 实例化
+rasterized 
+literally             adj. 字面上。
+that would be the equivalent  那是等效的
+essential business 必要的商店
+precisely          adv 精确地
+chime in 
+suffix, prefix
+Intensive phobia
+memory serves
+escalate   verb.     raising up
